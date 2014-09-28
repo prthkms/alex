@@ -1,4 +1,5 @@
 import os
+import stat
 import sys
 import shutil
 
@@ -16,10 +17,14 @@ def install_home_dir():
 		else:
 			print "Copy failed. Exiting . . ."
 			sys.exit()
+		main_path = os.path.join(install_dir, 'main.py')
+		st = os.stat(main_path)
+		os.chmod(main_path,st.st_mode | stat.S_IEXEC) #main.py made executable	
+		
 		print "Adding alias to bashrc . . ."
 		bashrc = open(os.path.join(home_dir, ".bashrc"), "a")
 		bashrc.write("\n### Added by alex\n")
-		bashrc.write("alias alex=\'python "+os.path.join(install_dir, 'main.py')+"\'")
+		bashrc.write("alias alex=\'"+os.path.join(install_dir, 'main.py')+"\'")
 		bashrc.write("\n")
 		bashrc.close()
 		os.system("source ~/.bashrc")
@@ -45,11 +50,14 @@ def install_custom_dir():
 		else:
 			print "Copy failed. Exiting . . ."
 			sys.exit()
+		main_path = os.path.join(install_dir, 'main.py')
+		st = os.stat(main_path)
+		os.chmod(main_path,st.st_mode | stat.S_IEXEC) #main.py made executable	
 		print "Adding alias to bashrc . . ."
 		bashrc = open(os.path.join(home_dir, ".bashrc"), "a")
 		bashrc.write("\n### Added by alex\n")
-		bashrc.write("alias alex=\'python "+os.path.join(install_dir, 'main.py')+"\'")
-		bashrc.write("\n")
+		bashrc.write("alias alex=\'"+os.path.join(install_dir, 'main.py')+"\'")
+		bashrc.write("\n")	
 		bashrc.close()
 		os.system("source ~/.bashrc")
 		print "Done. You can now run alex from command line."		

@@ -1,4 +1,4 @@
 from preprocess import QueryMatcher
 
 qm = QueryMatcher()
-qm.query("count the number of lines in query.txt")
+qm.query("give me the line count in query.txt")

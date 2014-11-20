@@ -1,6 +1,6 @@
 class QueryMatcher(object):
 	"""docstring for QueryMatcher"""
-	def __init__(self, sen):
+	def __init__(self, query):
 		super(QueryMatcher, self).__init__()
-		self.arg = arg
+		self.arg = query
 		

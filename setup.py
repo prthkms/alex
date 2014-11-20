@@ -62,12 +62,12 @@ def install_custom_dir():
 		os.system("source ~/.bashrc")
 		print "Done. You can now run alex from command line."		
 
-curdir = raw_input("Alex will be installed to your home directory(~/alex) by default. Enter yes if you wish to \
+install_in_home_dir = raw_input("Alex will be installed to your home directory(~/alex) by default. Enter yes if you wish to \
 proceed. Enter no to specify a custom directory. (y/n) ")
 
-if(curdir.lower() == 'y' or curdir.lower() == 'yes'):
+if(install_in_home_dir.lower() == 'y' or install_in_home_dir.lower() == 'yes'):
 	install_home_dir()
-elif(curdir.lower() == 'n' or curdir.lower() == 'no'):
+elif(install_in_home_dir.lower() == 'n' or install_in_home_dir.lower() == 'no'):
 	install_custom_dir()
 else:
 	print ("Sorry invalid input.\nExiting setup now . . .")

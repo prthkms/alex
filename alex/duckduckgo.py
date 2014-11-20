@@ -1,6 +1,9 @@
 import json
 import requests
 
+# example queries:
+# duckduckgo.py mahatma gnadhi
+# duckduckgo.py friends characters
 
 def parse_result(result):
 	if(result['Type'] == 'D'):

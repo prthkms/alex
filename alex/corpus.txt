@@ -1,0 +1,40 @@
+Count the number of lines in the file abc.txt
+Count the number of lines in abc.txt
+How many lines are there in the file abc.txt
+How many lines are there in abc.txt
+how many lines are contained in abc.txt
+how many lines are contained in the file abc.txt
+abc.txt contains how many lines
+find the number of lines in abc.txt
+find the number of lines in the file abc.txt
+find the count of lines in abc.txt
+find the count of lines in the file abc.txt
+get the number of lines in abc.txt
+get the number of lines in the file abc.txt
+get the count of lines in abc.txt
+get the count of lines in the file abc.txt
+give me the count of lines in the file abc.txt
+what are the number of lines in the file abc.txt
+What is the count of lines in the file abc.txt
+What is the total number of lines in the file abc.txt
+What is the total number of lines in abc.txt
+Count the number of words in the file abc.txt
+Count the number of words in abc.txt
+How many words are there in the file abc.txt
+How many words are there in abc.txt
+how many words are contained in abc.txt
+how many words are contained in the file abc.txt
+abc.txt contains how many words
+find the number of words in abc.txt
+find the number of words in the file abc.txt
+find the count of words in abc.txt
+find the count of words in the file abc.txt
+get the number of words in abc.txt
+get the number of words in the file abc.txt
+get the count of words in abc.txt
+get the count of words in the file abc.txt
+give me the count of words in the file abc.txt
+what are the number of words in the file abc.txt
+What is the count of words in the file abc.txt
+What is the total number of words in the file abc.txt
+What is the total number of words in abc.txt

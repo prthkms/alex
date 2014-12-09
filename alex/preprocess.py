@@ -24,7 +24,9 @@ class QueryMatcher(object):
 		'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should',
 		'now']
 		self.corpus = open('corpus.txt')
+		self.category = open('category.txt')
 		self.corpus_list = self.corpus.readlines()
+		self.category_list = self.category.readlines()
 		self.corpus.seek(0)
 		self.corpus = self.corpus.read()
 		self.processed_corpus = []
@@ -39,7 +41,7 @@ class QueryMatcher(object):
 		self.calculate_term_frequencies()
 
 	def process_corpus(self):
-		for doc in self.corpus:
+		for doc in self.corpus_list:
 			doc = wt(doc)
 			sentence = []
 			for word in doc:
@@ -51,15 +53,15 @@ class QueryMatcher(object):
 	def process_query(self):
 		self.query = wt(self.query)
 		self.processed_query = []
-		for word in self.processed_query:
-			if word not in stop and word not in punctuation:
+		for word in self.query:
+			if word not in self.stop_words and word not in self.punctuation:
 				self.processed_query.append(self.stemmer.stem(word))
 
 	def query(self, query):
 		self.query = query
 		self.process_query()
-		self.corpus_match = self.match_query_to_corpus()
-		print self.corpus_match
+		matching_corpus_index = self.match_query_to_corpus()
+		return self.category_list[matching_corpus_index].strip()
 
 	def calculate_inverse_docoument_frequencies(self):
 		for doc in self.processed_corpus:
@@ -81,8 +83,8 @@ class QueryMatcher(object):
 	def match_query_to_corpus(self):
 		ranking = []
 		for i,doc in enumerate(self.processed_corpus):
-			rank = 0
-			for word in self.query:
+			rank = 0.0
+			for word in self.processed_query:
 				if word in doc:
 					rank += self.term_frequencies[i][word] * self.inverse_document_frequencies[word]
 			ranking.append((rank,i))
@@ -91,4 +93,5 @@ class QueryMatcher(object):
 		for rank,index in ranking:
 			if rank > max_rank:
 				matching_corpus_index = index
-		return self.corpus_list[matching_corpus_index]
+				max_rank = rank
+		return matching_corpus_index

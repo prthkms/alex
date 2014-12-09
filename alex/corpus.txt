@@ -1,3 +1,4 @@
+
 Count the number of lines in the file abc.txt
 Count the number of lines in abc.txt
 How many lines are there in the file abc.txt
@@ -38,3 +39,6 @@ what are the number of words in the file abc.txt
 What is the count of words in the file abc.txt
 What is the total number of words in the file abc.txt
 What is the total number of words in abc.txt
+weather
+climate
+temperature

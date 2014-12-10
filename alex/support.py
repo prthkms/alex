@@ -16,6 +16,8 @@ def assign_handler(query, category):
 		handler.file_info(query)
 	elif(category == 'executable'):
 		handler.make_executable(query)
+	elif(category == 'search'):
+		handler.search(query)
 
 def get_file_name(query):
 	match = re.search(r'\S*\.[\d\w]{1,4}', query)

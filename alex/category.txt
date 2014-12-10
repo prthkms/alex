@@ -50,3 +50,5 @@ file info
 executable
 executable
 executable
+search
+search

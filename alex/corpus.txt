@@ -50,3 +50,5 @@ file info
 executable
 make abc.txt executable
 give execute permission to abc.txt
+search file abc.txt
+locate file abc.txt

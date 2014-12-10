@@ -43,4 +43,26 @@ def weather(query):
 	
 
 def generic(query):
-	pass
+	try:
+		response = unirest.post("https://textanalysis.p.mashape.com/nltk-stanford-ner",
+	  		headers={
+	    	"X-Mashape-Key": "E7WffsNDbNmshj4aVC4NUwj9dT9ep1S2cc3jsnFp5wSCzNBiaP",
+	    	"Content-Type": "application/x-www-form-urlencoded"
+	  			},
+	  		params={
+	    	"text": query
+	  		}
+		)
+	except:
+		print 'Unable to connect to internet'
+		return
+	web_query = ''
+	for entity in response.body['result'].split():
+		word,tag = entity.split('/')
+		if(tag != 'O'):
+			web_query += ' '+word
+	if(web_query != ''):
+		web_query = web_query.strip().split()
+		duckduckgo.query(web_query)
+	else:
+		print 'I do not know how to process this query at this moment.'

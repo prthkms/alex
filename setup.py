@@ -63,11 +63,11 @@ def install_custom_dir():
 		print "Done. You can now run alex from command line."		
 
 install_in_home_dir = raw_input("Alex will be installed to your home directory(~/alex) by default. Enter yes if you wish to \
-proceed. Enter no to specify a custom directory. (y/n) ")
+proceed. Enter no to cancel. (y/n) ")
 
 if(install_in_home_dir.lower() == 'y' or install_in_home_dir.lower() == 'yes'):
 	install_home_dir()
 elif(install_in_home_dir.lower() == 'n' or install_in_home_dir.lower() == 'no'):
-	install_custom_dir()
+	print 'exiting . . .'
 else:
 	print ("Sorry invalid input.\nExiting setup now . . .")

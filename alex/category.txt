@@ -42,3 +42,11 @@ count words
 weather
 weather
 weather
+file info
+file info
+file info
+file info
+file info
+executable
+executable
+executable

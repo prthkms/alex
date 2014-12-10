@@ -42,3 +42,11 @@ What is the total number of words in abc.txt
 weather
 climate
 temperature
+show me details of abc.txt
+size of file abc.txt
+size of abc.txt
+file information
+file info
+executable
+make abc.txt executable
+give execute permission to abc.txt

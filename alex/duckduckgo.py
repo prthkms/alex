@@ -14,7 +14,7 @@ like apple inc or apple computers.
 	
 	elif(result['Type'] == 'A'):
 		print result['AbstractText']
-		print 'Results from DuckDuckGo'
+		print '\nResults from DuckDuckGo'
 	
 	elif(result['Type'] == 'C'):
 		for entry in result['RelatedTopics']:

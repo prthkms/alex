@@ -2,7 +2,7 @@ from nltk.tokenize import word_tokenize as wt
 from nltk.stem import PorterStemmer
 from collections import defaultdict
 from math import log
-
+import os
 
 class QueryMatcher(object):
 	"""docstring for QueryMatcher"""
@@ -23,8 +23,10 @@ class QueryMatcher(object):
 		'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'nor',  'only',
 		'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should',
 		'now']
-		self.corpus = open('corpus.txt')
-		self.category = open('category.txt')
+		# ALEX_DIR = os.path.join(os.path.expanduser('~'),'alex')
+		ALEX_DIR = '/home/pratheek/work/git_repos/alex/alex'
+		self.corpus = open(os.path.join(ALEX_DIR,'corpus.txt'))
+		self.category = open(os.path.join(ALEX_DIR,'category.txt'))
 		self.corpus_list = self.corpus.readlines()
 		self.category_list = self.category.readlines()
 		self.corpus.seek(0)

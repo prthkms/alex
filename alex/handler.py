@@ -63,3 +63,19 @@ def search(query):
 			return
 	except:
 		print 'Something went wrong. Most likely its an input error. Please try again'
+
+def add_to_path(query):
+	new_entry = support.get_path(query)
+	if(new_entry):
+		print 'Adding '+new_entry+' to PATH variable.'
+		print '''1 : confirm
+2 : cancel
+	'''
+		choice = int(raw_input('>> '))
+		if(choice == 1):
+			home_dir = os.path.expanduser('~')
+			bashrc = open(os.path.join(home_dir, ".bashrc"), "a")
+			bashrc.write('\n\nexport PATH=\"'+new_entry+':$PATH\"\n')
+			bashrc.close()
+	else:
+		print 'We were unable to extract the \'path\' from your query.'

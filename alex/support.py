@@ -18,6 +18,8 @@ def assign_handler(query, category):
 		handler.make_executable(query)
 	elif(category == 'search'):
 		handler.search(query)
+	elif(category == 'path'):
+		handler.add_to_path(query)
 
 def get_file_name(query):
 	match = re.search(r'\S*\.[\d\w]{1,4}', query)
@@ -38,6 +40,13 @@ def get_file_name(query):
 				if(os.path.isfile(filename)):
 					return filename
 			print 'Unable to locate file'
+
+def get_path(query):
+	match = re.search(r'/(.*/)+(\S*(\.[\d\w]{1,4})?)', query)
+	if(os.path.isfile(match.group()) or os.path.isdir(match.group())):
+		return match.group()
+	else:
+		return None
 
 def get_readable_filesize(size):
 	if(size < 1024):

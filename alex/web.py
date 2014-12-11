@@ -2,6 +2,8 @@ import duckduckgo
 import unirest
 from stanford_corenlp_pywrapper import sockwrap
 
+#function uses Name entity Recogniser( nltk-stanford-ner) to determine location entity in query 
+#and fetch weather info for that location(using yahoo apis)
 def weather(query):
 	print 'Identifying the location . . .'
 	try:
@@ -41,7 +43,7 @@ def weather(query):
 	else:
 		print 'Unable to get the location.'
 	
-
+#function to process a generic query by the user using the Stanford NLTK NER and duckduckgo api
 def generic(query):
 	try:
 		response = unirest.post("https://textanalysis.p.mashape.com/nltk-stanford-ner",

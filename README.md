@@ -56,13 +56,13 @@ nltk
 
 unirest
 ------
-sudo pip install unirest
-https://github.com/Mashape/unirest-python
+    sudo pip install unirest
+    https://github.com/Mashape/unirest-python
 
 requests
 --------
-sudo pip install requests
-https://pypi.python.org/pypi/requests
+    sudo pip install requests
+    https://pypi.python.org/pypi/requests
 
 
 

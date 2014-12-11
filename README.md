@@ -1,19 +1,6 @@
-2014
-----
-7th Semester
-------
-Course : Architecture of Open Source Application
----------
-Instructor : Dr. Ram P Rustagi
---------
-Team:
-Pratheek MS
-Chitra Singh
-Anushree Prasanna Kumar
---------------------
 
-Project Title : Alex
-====================
+Alex
+=============
 
 Description
 -----------

@@ -1,9 +1,12 @@
 import duckduckgo
 import unirest
 
-#function uses Name entity Recogniser( nltk-stanford-ner) to determine location entity in query 
-#and fetch weather info for that location(using yahoo apis)
 def weather(query):
+	"""weather(query) -- use Name Entity Recogniser (nltk-stanford-ner), to 
+	determine location entity in query and fetch weather info for that location
+	(using yahoo apis).
+	"""
+
 	print 'Identifying the location . . .'
 	try:
 		response = unirest.post("https://textanalysis.p.mashape.com/nltk-stanford-ner",
@@ -27,7 +30,8 @@ def weather(query):
 		print 'Gathering weather information for'+location
 		import urllib2, urllib, json
 		baseurl = "https://query.yahooapis.com/v1/public/yql?"
-		yql_query = "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\""+location+"\")"
+		yql_query = "select * from weather.forecast where woeid in \
+		(select woeid from geo.places(1) where text=\""+location+"\")"
 		yql_url = baseurl + urllib.urlencode({'q':yql_query}) + "&format=json"
 		try:
 			result = urllib2.urlopen(yql_url).read()
@@ -42,8 +46,12 @@ def weather(query):
 	else:
 		print 'Unable to get the location.'
 	
-#function to process a generic query by the user using the Stanford NLTK NER and duckduckgo api
+
 def generic(query):
+	""" generic(query) -- process a generic user query using the Stanford 
+	NLTK NER and duckduckgo api.
+	"""
+	
 	try:
 		response = unirest.post("https://textanalysis.p.mashape.com/nltk-stanford-ner",
 	  		headers={

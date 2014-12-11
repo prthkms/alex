@@ -23,8 +23,8 @@ class QueryMatcher(object):
 		super(QueryMatcher, self).__init__()
 		self.initialize()
 
-	def calculate_inverse_docoument_frequencies(self):
-		"""Q.calculate_inverse_docoument_frequencies() -- measures how much
+	def calculate_inverse_document_frequencies(self):
+		"""Q.calculate_inverse_document_frequencies() -- measures how much
 		information the term provides, i.e. whether the term is common or
 		rare across all documents.
 
@@ -96,7 +96,7 @@ class QueryMatcher(object):
 
 		#--------------------------------------
 		self.process_corpus()
-		self.calculate_inverse_docoument_frequencies()
+		self.calculate_inverse_document_frequencies()
 		self.calculate_term_frequencies()
 
 
@@ -157,38 +157,5 @@ class QueryMatcher(object):
 
 
 
-	def calculate_inverse_docoument_frequencies(self):
-		for doc in self.processed_corpus:
-			for word in doc:
-				self.inverse_document_frequencies[word] += 1
-		for key,value in self.inverse_document_frequencies.iteritems():
-			self.inverse_document_frequencies[key] = log((1.0*len(self.corpus))/value)
 
-#To calculate term frequencies
-	def calculate_term_frequencies(self):
-		for doc in self.processed_corpus:
-			term_frequency_doc = defaultdict(int)
-			for word in doc:
-				term_frequency_doc[word] += 1
-			
-			for key,value in term_frequency_doc.iteritems():
-				term_frequency_doc[key] = (1.0*value)/len(doc)
-			self.term_frequencies.append(term_frequency_doc)
-
-#To match user query to corpus list and return queries with their ranking based on closest match 
-	def match_query_to_corpus(self):
-		ranking = []
-		for i,doc in enumerate(self.processed_corpus):
-			rank = 0.0
-			for word in self.processed_query:
-				if word in doc:
-					rank += self.term_frequencies[i][word] * self.inverse_document_frequencies[word]
-			ranking.append((rank,i))
-		matching_corpus_index = 0
-		max_rank = 0
-		for rank,index in ranking:
-			if rank > max_rank:
-				matching_corpus_index = index
-				max_rank = rank
-		return matching_corpus_index
 

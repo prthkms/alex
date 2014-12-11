@@ -6,35 +6,43 @@ import time
 import subprocess
 
 def lines(query):
+	"""lines(query) -- print the number of lines in a given file
+	"""
 	filename = support.get_file_name(query)
 	if(os.path.isfile(filename)):
 		with open(filename) as openfile:
 			print len(openfile.readlines())
 	else:
-		print 'File not found : '+filename
+		print 'File not found : ' + filename
 
 def words(query):
+	"""lines(query) -- print the number of words in a given file
+	"""
 	filename = support.get_file_name(query)
 	if(os.path.isfile(filename)):
 		with open(filename) as openfile:
 			print len(openfile.read().split())
 	else:
-		print 'File not found : '+filename
+		print 'File not found : ' + filename
 
 def file_info(query):
+	"""file_info(query) -- print some human readable information of a given file
+	"""
 	filename = support.get_file_name(query)
 	if(os.path.isfile(filename)):
 		stat_info = os.stat(filename)
 		owner_name = pwd.getpwuid(stat_info.st_uid).pw_name
-		print 'owner : '+owner_name
+		print 'owner : ' + owner_name
 		file_size = support.get_readable_filesize(stat_info.st_size)
-		print 'size : '+file_size
-		print 'created : '+time.ctime(stat_info.st_ctime)
-		print 'last modified : '+time.ctime(stat_info.st_mtime)
+		print 'size : ' + file_size
+		print 'created : ' + time.ctime(stat_info.st_ctime)
+		print 'last modified : ' + time.ctime(stat_info.st_mtime)
 	else:
 		print 'file not found'
 
 def make_executable(query):
+	"""make_executable(query) -- give executable permissions to a given file
+	"""
 	filename = support.get_file_name(query)
 	if(os.path.isfile(filename)):
 		os.system('chmod +x '+filename)
@@ -43,9 +51,9 @@ def make_executable(query):
 
 def search(query):
 	print '''I\'m a little confused. Please enter a choice
-1 : Search for file by its name
-2 : Search for files which contain a keyword
-'''
+	1 : Search for file by its name
+	2 : Search for files which contain a keyword
+	'''
 	try:
 		choice = int(raw_input('>> '))
 		if(choice == 1):
@@ -56,10 +64,11 @@ def search(query):
 				print 'not able to get the filename'
 		elif(choice == 2):
 			keyword = raw_input('Enter keyword : ')
-			print '''By default I\'ll start searching from HOME directory. But this usually takes time.
-1 : Search from HOME directory
-2 : Search from current directory
-'''
+			print '''By default I\'ll start searching from HOME directory.\
+			But this usually takes time.
+			1 : Search from HOME directory
+			2 : Search from current directory
+			'''
 			location = int(raw_input('>> '))
 			if(location == 1):
 				os.system('grep -i -n -r \''+keyword+'\' '+os.path.expanduser('~'))
@@ -75,9 +84,9 @@ def search(query):
 
 def search_new(query):
 	print '''I\'m a little confused. Please enter a choice
-1 : Search for file by its name
-2 : Search for files which contain a keyword
-'''
+	1 : Search for file by its name
+	2 : Search for files which contain a keyword
+	'''
 	try:
 		choice = int(raw_input('>> '))
 		if(choice == 1):
@@ -99,12 +108,14 @@ def search_new(query):
 		print 'Something went wrong. Most likely its an input error. Please try again'
 
 def add_to_path(query):
+	""" add_to_path(query) -- add user given path to environment PATH variable.
+	"""
 	new_entry = support.get_path(query)
 	if(new_entry):
 		print 'Adding '+new_entry+' to PATH variable.'
 		print '''1 : confirm
-2 : cancel
-	'''
+		2 : cancel
+		'''
 		choice = int(raw_input('>> '))
 		if(choice == 1):
 			home_dir = os.path.expanduser('~')
@@ -118,6 +129,9 @@ def add_to_path(query):
 		print 'We were unable to extract the \'path\' from your query.'
 
 def system_info(query):
+	"""system_info(query) -- print system specific information like OS, kernel,
+	architecture etc.
+	"""
 	proc = subprocess.Popen(["uname -o"], stdout=subprocess.PIPE, shell=True)
 	(out, err) = proc.communicate()
 	print "operating system : "+str(out),

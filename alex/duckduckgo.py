@@ -2,14 +2,18 @@ import json
 import requests
 
 # example queries:
-# duckduckgo.py mahatma gnadhi
-# duckduckgo.py friends characters
+# 	duckduckgo.query("Mahatma Gandhi")
+# 	duckduckgo.query("friends characters")
 
 def parse_result(result):
+	"""parse_result(json result) -- print the web query according to the type 
+	of result from duckduckgo.
+	"""
+
 	if(result['Type'] == 'D'):
-		print """There is more than one answer for this. Try making your query more specific.
-For example, if you want to learn about apple the company and not apple the fruit, try something \
-like apple inc or apple computers.  
+		print """There is more than one answer for this. Try making your query\
+		more specific. For example, if you want to learn about apple the company\
+		and not apple the fruit, try something like apple inc or apple computers.  
 		"""
 	
 	elif(result['Type'] == 'A'):
@@ -21,16 +25,19 @@ like apple inc or apple computers.
 			print entry['Text']
 			print "\n"
 	else:
-		print "I do not know how to process this query at the moment"
+		print "I do not know how to process this query at the moment."
 
 def query(string):
+	"""query(user string) -- make http request to duckduckgo api, to get result
+	in json format, then call parse_result.
+	"""
 	url = "https://api.duckduckgo.com/?q="
 	formating = "&format=json"
 	query_string = url+'+'.join(string)+formating
 	try:
 		result = json.loads(requests.get(query_string).text)
 	except:
-		print "I'm sorry. Something went wrong. May be we could try again later."
+		print "I'm sorry! Something went wrong. Maybe we could try again later."
 		return
 	parse_result(result)
 

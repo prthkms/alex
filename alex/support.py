@@ -4,6 +4,9 @@ import re
 import os
 
 def assign_handler(query, category):
+	"""assign_handler(query, category) -- assign the user's query to a 
+	particular category, and call the appropriate handler.
+	"""
 	if(category == 'count lines'):
 		handler.lines(query)
 	elif(category == 'count words'):
@@ -26,6 +29,9 @@ def assign_handler(query, category):
 		print 'I\'m not able to understand your query'
 
 def get_file_name(query):
+	"""get_file_name(query) -> filename -- return the filename found in a
+	given, found by matching a regular expression.
+	"""
 	match = re.search(r'\S*\.[\d\w]{1,4}', query)
 	if(match):
 		filename = match.group()
@@ -45,6 +51,9 @@ def get_file_name(query):
 		return None
 
 def get_path(query):
+	"""get_path(query) -> pathname -- return the path found in a
+	given, found by matching a regular expression.
+	"""
 	match = re.search(r'/(.*/)+(\S*(\.[\d\w]{1,4})?)', query)
 	if(os.path.isfile(match.group()) or os.path.isdir(match.group())):
 		return match.group()
@@ -52,6 +61,9 @@ def get_path(query):
 		return None
 
 def get_readable_filesize(size):
+	"""get_readable_filesize(size) -> filesize -- return human readable 
+	filesize from given size in bytes.
+	"""
 	if(size < 1024):
 		return str(size)+' bytes'
 	temp = size/1024.0

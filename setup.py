@@ -24,7 +24,7 @@ def install_home_dir():
 		print "Adding alias to bashrc . . ."
 		bashrc = open(os.path.join(home_dir, ".bashrc"), "a")
 		bashrc.write("\n### Added by alex\n")
-		bashrc.write("alias alex=\'"+os.path.join(install_dir, 'main.py')+"\'")
+		bashrc.write("alias alex=\'python "+os.path.join(install_dir, 'main.py')+"\'")
 		bashrc.write("\n")
 		bashrc.close()
 		os.system("source ~/.bashrc")

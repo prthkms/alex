@@ -22,6 +22,10 @@ def assign_handler(query, category):
 		handler.add_to_path(query)
 	elif(category == 'uname'):
 		handler.system_info(query)
+	elif(category == 'push'):
+		handler.push()
+	elif(category == 'pop'):
+		handler.pop()
 
 def get_file_name(query):
 	match = re.search(r'\S*\.[\d\w]{1,4}', query)

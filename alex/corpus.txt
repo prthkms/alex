@@ -49,3 +49,5 @@ find file
 find
 add to path variable
 system information kernel version architecture bit
+push
+pop

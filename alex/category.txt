@@ -15,14 +15,6 @@ count lines
 count lines
 count lines
 count lines
-count lines
-count lines
-count lines
-count lines
-count words
-count words
-count words
-count words
 count words
 count words
 count words
@@ -47,9 +39,13 @@ file info
 file info
 file info
 file info
+file info
 executable
 executable
 executable
+search
+search
 search
 search
 path
+uname

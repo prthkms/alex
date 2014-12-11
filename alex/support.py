@@ -20,26 +20,27 @@ def assign_handler(query, category):
 		handler.search(query)
 	elif(category == 'path'):
 		handler.add_to_path(query)
+	elif(category == 'uname'):
+		handler.system_info(query)
 
 def get_file_name(query):
 	match = re.search(r'\S*\.[\d\w]{1,4}', query)
 	if(match):
 		filename = match.group()
-		if(os.path.isfile(filename)):
-			return filename
-		else:
-			start = match.start()
-			end = match.end()
-			spaces = re.finditer(r' ', query)
-			space_index = []
-			for space in spaces:
-				space_index.append(space.start())
-			space_index.pop()
-			for i in space_index:
-				filename = query[i+1:end]
-				if(os.path.isfile(filename)):
-					return filename
-			print 'Unable to locate file'
+		return filename
+	else:
+		start = match.start()
+		end = match.end()
+		spaces = re.finditer(r' ', query)
+		space_index = []
+		for space in spaces:
+			space_index.append(space.start())
+		space_index.pop()
+		for i in space_index:
+			filename = query[i+1:end]
+			if(os.path.isfile(filename)):
+				return filename
+		return None
 
 def get_path(query):
 	match = re.search(r'/(.*/)+(\S*(\.[\d\w]{1,4})?)', query)

@@ -23,8 +23,8 @@ class QueryMatcher(object):
 		'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'nor',  'only',
 		'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should',
 		'now']
-		# ALEX_DIR = os.path.join(os.path.expanduser('~'),'alex')
-		ALEX_DIR = '/home/pratheek/work/git_repos/alex/alex'
+		ALEX_DIR = os.path.join(os.path.expanduser('~'),'alex')
+		#ALEX_DIR = '/home/pratheek/work/git_repos/alex/alex'
 		self.corpus = open(os.path.join(ALEX_DIR,'corpus.txt'))
 		self.category = open(os.path.join(ALEX_DIR,'category.txt'))
 		self.corpus_list = self.corpus.readlines()

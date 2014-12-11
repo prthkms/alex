@@ -1,6 +1,5 @@
 import duckduckgo
 import unirest
-from stanford_corenlp_pywrapper import sockwrap
 
 #function uses Name entity Recogniser( nltk-stanford-ner) to determine location entity in query 
 #and fetch weather info for that location(using yahoo apis)

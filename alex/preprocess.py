@@ -1,9 +1,10 @@
+from __future__ import division
 from nltk.tokenize import word_tokenize as wt
 from nltk.stem import PorterStemmer
 from collections import defaultdict
 from math import log
 import os
-from __future__ import division
+
 
 class QueryMatcher(object):
 	"""This an implementation of tf-idf ranking 
@@ -78,6 +79,7 @@ class QueryMatcher(object):
 
 		ALEX_DIR = os.path.join(os.path.expanduser('~'),'alex')
 		#ALEX_DIR = '/home/pratheek/work/git_repos/alex/alex'
+		#ALEX_DIR = '/home/chitra/aost/alex/alex'
 		self.corpus = open(os.path.join(ALEX_DIR,'corpus.txt'))
 		self.category = open(os.path.join(ALEX_DIR,'category.txt'))
 		self.corpus_list = self.corpus.readlines()

@@ -9,7 +9,7 @@ Description
 Installation
 ------------
  To install alex just run the following in your terminal:
-     (git clone https://github.com/pratheekms/alex)
+     git clone https://github.com/pratheekms/alex
  Navigate to alex directory and run setup.py :
       python setup.py
 

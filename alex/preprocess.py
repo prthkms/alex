@@ -12,6 +12,7 @@ class QueryMatcher(object):
 		self.initialize()
 
 	def initialize(self):
+                #list of stopwords
 		self.stop_words = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours', 'yourself',
 		'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its',
 		'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom',
@@ -23,6 +24,7 @@ class QueryMatcher(object):
 		'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'nor',  'only',
 		'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should',
 		'now']
+                #Obtain current path
 		ALEX_DIR = os.path.join(os.path.expanduser('~'),'alex')
 		#ALEX_DIR = '/home/pratheek/work/git_repos/alex/alex'
 		self.corpus = open(os.path.join(ALEX_DIR,'corpus.txt'))
@@ -42,6 +44,7 @@ class QueryMatcher(object):
 		self.calculate_inverse_docoument_frequencies()
 		self.calculate_term_frequencies()
 
+#function to perform stemming operation on corpus words,create sentences of stemmed words and append them to a processed corpus list
 	def process_corpus(self):
 		for doc in self.corpus_list:
 			doc = wt(doc)
@@ -52,19 +55,21 @@ class QueryMatcher(object):
 					sentence.append(word)
 			self.processed_corpus.append(sentence)
 
+#function to perform stemming operation on user query words, and append them to a processed query list
 	def process_query(self):
 		self.query = wt(self.query)
 		self.processed_query = []
 		for word in self.query:
 			if word not in self.stop_words and word not in self.punctuation:
 				self.processed_query.append(self.stemmer.stem(word))
-
+#function to match user query to corpus and return category
 	def query(self, query):
 		self.query = query
 		self.process_query()
 		matching_corpus_index = self.match_query_to_corpus()
 		return self.category_list[matching_corpus_index].strip()
 
+#function to calculate inverse document frequencies
 	def calculate_inverse_docoument_frequencies(self):
 		for doc in self.processed_corpus:
 			for word in doc:
@@ -72,6 +77,7 @@ class QueryMatcher(object):
 		for key,value in self.inverse_document_frequencies.iteritems():
 			self.inverse_document_frequencies[key] = log((1.0*len(self.corpus))/value)
 
+#function to calculate term frequencies
 	def calculate_term_frequencies(self):
 		for doc in self.processed_corpus:
 			term_frequency_doc = defaultdict(int)
@@ -82,6 +88,7 @@ class QueryMatcher(object):
 				term_frequency_doc[key] = (1.0*value)/len(doc)
 			self.term_frequencies.append(term_frequency_doc)
 
+#function to match user query to corpus list and return queries with their ranking based on closest match 
 	def match_query_to_corpus(self):
 		ranking = []
 		for i,doc in enumerate(self.processed_corpus):

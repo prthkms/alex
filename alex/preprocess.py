@@ -83,6 +83,7 @@ class QueryMatcher(object):
 		#ALEX_DIR = '/home/chitra/aost/alex/alex'
 		#ALEX_DIR = '/home/anushree/aost/alex/alex'
 		self.category = open(os.path.join(ALEX_DIR,'category.txt'))
+		self.corpus = open(os.path.join(ALEX_DIR,'corpus.txt'))
 		self.corpus_list = self.corpus.readlines()
 		self.category_list = self.category.readlines()
 		self.corpus.seek(0)

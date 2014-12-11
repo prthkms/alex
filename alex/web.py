@@ -1,6 +1,5 @@
 import duckduckgo
 import unirest
-from stanford_corenlp_pywrapper import sockwrap
 
 def weather(query):
 	print 'Identifying the location . . .'

@@ -7,7 +7,8 @@ def install_home_dir():
 	home_dir = os.path.expanduser('~')
 	install_dir = os.path.join(home_dir,'alex')
 	if(os.path.exists(install_dir)):
-		print 'Alex already exists !! If its a failed installation, please remove it completely to try again'
+		print 'Alex already exists !! If its a failed installation, please \
+		remove it completely to try again'
 		sys.exit()
 	else:
 		print "Copying files . . ."
@@ -34,7 +35,8 @@ def install_home_dir():
 
 
 def install_custom_dir():
-	custom_dir = raw_input("Enter the path where you would like to install alex.\n")
+	custom_dir = raw_input("Enter the path where you would like to \
+	install alex.\n")
 	custom_dir = os.path.abspath(custom_dir)
 	install_dir = os.path.join(custom_dir, 'alex')
 	home_dir = os.path.expanduser('~')
@@ -42,7 +44,8 @@ def install_custom_dir():
 		print "Invalid directory. Failed to install."
 		sys.exit()
 	elif(os.path.exists(install_dir)):
-		print "Alex already exists !! If its a failed installation, please remove it completely to try again"
+		print "Alex already exists !! If its a failed installation, please \
+		remove it completely to try again"
 		sys.exit()
 	else:
 		print "Copying files . . ."
@@ -64,8 +67,9 @@ def install_custom_dir():
 		os.system("source ~/.bashrc")
 		print "Done. You can now run alex from command line."		
 
-install_in_home_dir = raw_input("Alex will be installed to your home directory(~/alex) by default. Enter yes if you wish to \
-proceed. Enter no to cancel. (y/n) ")
+install_in_home_dir = raw_input("Alex will be installed to your home \
+	directory(~/alex) by default. Enter yes if you wish to proceed. \
+	Enter no to cancel. (y/n) ")
 
 if(install_in_home_dir.lower() == 'y' or install_in_home_dir.lower() == 'yes'):
 	install_home_dir()

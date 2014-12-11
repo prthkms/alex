@@ -1,22 +1,26 @@
-function push()
-{
-	echo $PWD > pushpop.txt #replace with path to pushpop.txt
-}
 
-function pop()
+function alex()
 {
-	while read line; do mydir="$line"; done <pushpop.txt #replace with path to pushpop.txt
-	cd $mydir
-}
+	function push()
+	{
+		echo $PWD > $alex_dir/pushpop.txt
+	}
 
-if [ $1 = "push" ]
-then
-	push
-elif [ $1 = "pop" ]
-then
-	pop
-else
-	varargs=$@
-	export varargs
-	./t2.sh #to be replaced by alex, which calls main.py
-fi
+	function pop()
+	{
+		while read line; do mydir="$line"; done < $alex_dir/pushpop.txt
+		cd $mydir
+	}
+
+	if [ $1 = "push" ]
+	then
+		push
+	elif [ $1 = "pop" ]
+	then
+		pop
+	else
+		varargs=$@
+		export varargs
+		python $alex_dir/main.py $@
+	fi
+}

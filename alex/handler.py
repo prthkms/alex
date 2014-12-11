@@ -7,12 +7,11 @@ import subprocess
 
 def lines(query):
 	filename = support.get_file_name(query)
-	print filename
 	if(os.path.isfile(filename)):
 		with open(filename) as openfile:
 			print len(openfile.readlines())
 	else:
-		print 'File not found'+filename
+		print 'File not found : '+filename
 
 def words(query):
 	filename = support.get_file_name(query)
@@ -20,7 +19,7 @@ def words(query):
 		with open(filename) as openfile:
 			print len(openfile.read().split())
 	else:
-		print 'File not found'+filename
+		print 'File not found : '+filename
 
 def file_info(query):
 	filename = support.get_file_name(query)
@@ -45,34 +44,52 @@ def make_executable(query):
 def search(query):
 	print '''I\'m a little confused. Please enter a choice
 1 : Search for file by its name
-2 : Search for files with contain a keyword
+2 : Search for files which contain a keyword
 '''
 	try:
 		choice = int(raw_input('>> '))
 		if(choice == 1):
 			filename = support.get_file_name(query)
 			if(filename):
-				os.system('locate '+filename)
+				os.system('locate -b \'\\'+filename+'\'')
 			else:
 				print 'not able to get the filename'
 		elif(choice == 2):
 			keyword = raw_input('Enter keyword : ')
 			print '''By default I\'ll start searching from HOME directory. But this usually takes time.
 1 : Search from HOME directory
-2 : Search from a custom location
+2 : Search from current directory
 '''
 			location = int(raw_input('>> '))
 			if(location == 1):
 				os.system('grep -i -n -r \''+keyword+'\' '+os.path.expanduser('~'))
 			elif(location == 2):
-				directory = raw_input('Enter directory : HOME/')
-				directory = os.path.join(os.path.expanduser('~'),directory)
-				print directory
-				if(os.path.isdir(directory)):
-					os.system('grep -i -n -r \''+keyword+'\' '+directory)
-				else:
-					print 'Invalid directory'
-					return
+				os.system('grep -i -n -r \''+keyword+'\' '+os.path.abspath(os.curdir))
+			else:
+				print 'Invalid input'
+		else:
+			print 'Invalid input'
+			return
+	except:
+		print 'Something went wrong. Most likely its an input error. Please try again'
+
+def search_new(query):
+	print '''I\'m a little confused. Please enter a choice
+1 : Search for file by its name
+2 : Search for files which contain a keyword
+'''
+	try:
+		choice = int(raw_input('>> '))
+		if(choice == 1):
+			filename = support.get_file_name(query)
+			if(filename):
+				os.system('locate -b \'\\'+filename+'\'')
+			else:
+				print 'not able to get the filename'
+		elif(choice == 2):
+			keyword = raw_input('Enter keyword : ')
+			if(len(keyword) > 0):
+				os.system('grep -i -n -r \''+keyword+'\' '+os.path.abspath(os.curdir))
 			else:
 				print 'Invalid input'
 		else:
@@ -94,6 +111,9 @@ def add_to_path(query):
 			bashrc = open(os.path.join(home_dir, ".bashrc"), "a")
 			bashrc.write('\n\nexport PATH=\"'+new_entry+':$PATH\"\n')
 			bashrc.close()
+			os.system('source '+os.path.join(os.path.expanduser('~'),'.bashrc'))
+			print 'Success!!'
+			print os.system('echo $PATH')
 	else:
 		print 'We were unable to extract the \'path\' from your query.'
 

@@ -2,11 +2,11 @@
 Alex
 =====
 
-###Description
+### Description
 ---------------
 Alex is an open source Natural Language Processing based command line access tool.
 
-###Installation
+### Installation
 ----------------
 
 1. To install alex, run the following in your terminal
@@ -21,7 +21,7 @@ Alex is an open source Natural Language Processing based command line access too
   python setup.py
   ```
 
-###Python dependencies
+### Python dependencies
 ----------------------
 1. [nltk](http://www.nltk.org/install.html)
   ```bash
@@ -38,7 +38,7 @@ Alex is an open source Natural Language Processing based command line access too
   sudo pip install requests
   ```
 
-###Modules
+### Modules
 ----------
 Alex contains the following files (modules):
 
@@ -60,7 +60,7 @@ Alex contains the following files (modules):
 	* web.py - module to use named entity recognizer(NER) to execute web queries.
 	* duckduckgo.py  - module to use duckduckgo api to fetch results for generic queries.
 
-###Example queries
+### Example queries
 ------------------
 
 ```bash
@@ -123,7 +123,7 @@ alex add  /aost/project to path
 ```
 
 
-###Python standards followed
+### Python standards followed
 ----------------------------
 1. [Style Guide for Python Code (PEP 8)](https://www.python.org/dev/peps/pep-0008)
    
